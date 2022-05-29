@@ -32,6 +32,9 @@ const keyList = ['C', 'C#-Db', 'D', 'D#-Eb', 'E', 'F', 'F#-Gb', 'G', 'G#-Ab', 'A
 //ヘッダーのコンテンツ用の配列定義
 const majorDegree = ['度数', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 const functionList = ['機能', 'T', '代理SD', '代理T', 'SD', 'D', '代理T,SD', '代理D'];
+const scales = ['Major', 'Minor'];
+const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+const chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
 
 function Home() {
     //定義したスタイルを利用するための設定
@@ -48,50 +51,40 @@ function Home() {
                             {/* キー選択 */}
                             <div>
                               {keyList.map((item, index) => (
-                                <Button color="secondary" variant="contained" href={'/'+item} className={classes.keyButton} key={index}>{item}</Button>
+                                <Button color="secondary" variant="contained" href={'/' + item} className={classes.keyButton} key={index}>{item}</Button>
                               ))}
                             </div>
                             {/* テーブル部分の定義 */}
                             <TableContainer component={Paper}>
                                 <Table className={classes.table} aria-label="simple table">
-                                    {/* ヘッダー部分 */}
-                                    <TableHead className={classes.tableHead}>
-                                        <TableRow>
-                                            {majorDegree.map((item, index) => (
-                                                <TableCell align="center" key={index}>{item}</TableCell>
-                                            ))}
-                                        </TableRow>
-                                        <TableRow>
-                                            {functionList.map((item, index) => (
-                                                <TableCell align="center" key={index}>{item}</TableCell>
-                                            ))}
-                                        </TableRow>
-                                    </TableHead>
-                                     {/* ボディ部分 */}
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell align="center">構成音</TableCell>
-                                            <TableCell align="center">C</TableCell>
-                                            <TableCell align="center">D</TableCell>
-                                            <TableCell align="center">E</TableCell>
-                                            <TableCell align="center">F</TableCell>
-                                            <TableCell align="center">G</TableCell>
-                                            <TableCell align="center">A</TableCell>
-                                            <TableCell align="center">B</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell align="center">ダイアトニックコード</TableCell>
-                                            <TableCell align="center">
-                                              C
-                                            </TableCell>
-                                            <TableCell align="center">Dm</TableCell>
-                                            <TableCell align="center">Em</TableCell>
-                                            <TableCell align="center">F</TableCell>
-                                            <TableCell align="center">G</TableCell>
-                                            <TableCell align="center">Am</TableCell>
-                                            <TableCell align="center">Bdim</TableCell>
-                                        </TableRow>
-                                    </TableBody>
+                                  {/* ヘッダー部分 */}
+                                  <TableHead className={classes.tableHead}>
+                                      <TableRow>
+                                          {majorDegree.map((item, index) => (
+                                              <TableCell align="center" key={index}>{item}</TableCell>
+                                          ))}
+                                      </TableRow>
+                                      <TableRow>
+                                          {functionList.map((item, index) => (
+                                              <TableCell align="center" key={index}>{item}</TableCell>
+                                          ))}
+                                      </TableRow>
+                                  </TableHead>
+                                  {/* ボディ部分 */}
+                                  <TableBody>
+                                      <TableRow>
+                                          <TableCell align="center">構成音</TableCell>
+                                          {notes.map((note, index) => (
+                                            <TableCell align="center" key={index}>{note}</TableCell>
+                                          ))}
+                                      </TableRow>
+                                      <TableRow>
+                                          <TableCell align="center">ダイアトニックコード</TableCell>
+                                          {chords.map((chord, index) => (
+                                            <TableCell align="center" key={index}>{chord}</TableCell>
+                                          ))}
+                                      </TableRow>
+                                  </TableBody>
                                 </Table>
                             </TableContainer>
                         </Card>
