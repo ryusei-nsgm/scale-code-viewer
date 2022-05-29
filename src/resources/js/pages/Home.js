@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => createStyles({
     },
 }));
 
-const keyList = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B']
+const keyList = ['C', 'C#-Db', 'D', 'D#-Eb', 'E', 'F', 'F#-Gb', 'G', 'G#-Ab', 'A', 'A#-Bb', 'B']
 
 //ヘッダーのコンテンツ用の配列定義
 const majorDegree = ['度数', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
@@ -48,7 +48,7 @@ function Home() {
                             {/* キー選択 */}
                             <div>
                               {keyList.map((item, index) => (
-                                <Button color="secondary" variant="contained" className={classes.keyButton} key={index}>{item}</Button>
+                                <Button color="secondary" variant="contained" href={'/'+item} className={classes.keyButton} key={index}>{item}</Button>
                               ))}
                             </div>
                             {/* テーブル部分の定義 */}

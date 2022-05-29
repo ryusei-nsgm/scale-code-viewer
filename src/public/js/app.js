@@ -11577,7 +11577,7 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["defaul
     }
   });
 });
-var keyList = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B']; //ヘッダーのコンテンツ用の配列定義
+var keyList = ['C', 'C#-Db', 'D', 'D#-Eb', 'E', 'F', 'F#-Gb', 'G', 'G#-Ab', 'A', 'A#-Bb', 'B']; //ヘッダーのコンテンツ用の配列定義
 
 var majorDegree = ['度数', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 var functionList = ['機能', 'T', '代理SD', '代理T', 'SD', 'D', '代理T,SD', '代理D'];
@@ -11604,6 +11604,7 @@ function Home() {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
                   color: "secondary",
                   variant: "contained",
+                  href: '/' + item,
                   className: classes.keyButton,
                   children: item
                 }, index);
