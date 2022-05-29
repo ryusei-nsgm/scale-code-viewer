@@ -1,14 +1,8 @@
 import React from 'react';
 import { Button, Card } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import purple from '@material-ui/core/colors/purple';
+import MainTable from '../components/MainTable';
 
 //スタイルの定義
 const useStyles = makeStyles((theme) => createStyles({
@@ -28,10 +22,10 @@ const useStyles = makeStyles((theme) => createStyles({
 }));
 
 const keyList = ['C', 'C#-Db', 'D', 'D#-Eb', 'E', 'F', 'F#-Gb', 'G', 'G#-Ab', 'A', 'A#-Bb', 'B']
-
 //ヘッダーのコンテンツ用の配列定義
 const majorDegree = ['度数', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 const functionList = ['機能', 'T', '代理SD', '代理T', 'SD', 'D', '代理T,SD', '代理D'];
+
 const scales = ['Major', 'Minor'];
 const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 const chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
@@ -55,38 +49,7 @@ function Home() {
                               ))}
                             </div>
                             {/* テーブル部分の定義 */}
-                            <TableContainer component={Paper}>
-                                <Table className={classes.table} aria-label="simple table">
-                                  {/* ヘッダー部分 */}
-                                  <TableHead className={classes.tableHead}>
-                                      <TableRow>
-                                          {majorDegree.map((item, index) => (
-                                              <TableCell align="center" key={index}>{item}</TableCell>
-                                          ))}
-                                      </TableRow>
-                                      <TableRow>
-                                          {functionList.map((item, index) => (
-                                              <TableCell align="center" key={index}>{item}</TableCell>
-                                          ))}
-                                      </TableRow>
-                                  </TableHead>
-                                  {/* ボディ部分 */}
-                                  <TableBody>
-                                      <TableRow>
-                                          <TableCell align="center">構成音</TableCell>
-                                          {notes.map((note, index) => (
-                                            <TableCell align="center" key={index}>{note}</TableCell>
-                                          ))}
-                                      </TableRow>
-                                      <TableRow>
-                                          <TableCell align="center">ダイアトニックコード</TableCell>
-                                          {chords.map((chord, index) => (
-                                            <TableCell align="center" key={index}>{chord}</TableCell>
-                                          ))}
-                                      </TableRow>
-                                  </TableBody>
-                                </Table>
-                            </TableContainer>
+                            <MainTable majorDegree={majorDegree} functionList={functionList} notes={notes} chords={chords} />
                         </Card>
                     </div>
                 </div>
