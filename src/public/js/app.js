@@ -11682,7 +11682,7 @@ var majorDegree = ['度数', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 var functionList = ['機能', 'T', '代理SD', '代理T', 'SD', 'D', '代理T,SD', '代理D'];
 var scales = ['Major', 'Minor'];
 var notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-var chords = ['CM7', 'Dm7', 'Em', 'F', 'G', 'Am', 'Bdim'];
+var chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
 
 function Home() {
   //定義したスタイルを利用するための設定
