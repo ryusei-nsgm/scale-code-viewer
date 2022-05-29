@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Button } from '@material-ui/core';
 
 function Example() {
     return (
@@ -9,7 +10,8 @@ function Example() {
                     <div className="card">
                         <div className="card-header">Example Component</div>
 
-                        <div className="card-body">I'm an example component!</div>
+                        <div className="card-body">moved to pages</div>
+                        <Button color="secondary" variant="contained" href={`/`}>Homeに遷移</Button>
                     </div>
                 </div>
             </div>
@@ -18,7 +20,3 @@ function Example() {
 }
 
 export default Example;
-
-if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
-}
