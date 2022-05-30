@@ -7,7 +7,10 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "postinstall": "gulp browserify",
+        "start": "node server/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.13.13",
@@ -25,6 +28,7 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.12.4",
+        "history": "^4.10.1",
         "react-router-dom": "^5.3.3"
     }
 }
