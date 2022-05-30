@@ -11697,51 +11697,46 @@ var majorDegree = ['度数', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 var functionList = ['機能', 'T', '代理SD', '代理T', 'SD', 'D', '代理T,SD', '代理D']; // const scales = ['Major', 'Minor'];
 // let defaultNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 // let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-
-var chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
+// const chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
 
 function Home() {
   //定義したスタイルを利用するための設定
   var classes = useStyles(); // function getScale(index){
   // }
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    getScalesData();
-  }, []);
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
-      scales = _useState2[0],
-      setScales = _useState2[1];
+      rootNumber = _useState2[0],
+      setRootNumber = _useState2[1];
 
-  var getScalesData = function getScalesData() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/major?rootNumber=4').then(function (response) {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/major?rootNumber=".concat(rootNumber)).then(function (response) {
       setScales(response.data); //バックエンドから返ってきたデータでpostsを更新する
 
       console.log(response.data); //取得データ確認用のconsole.log()
     })["catch"](function () {
       console.log('通信に失敗しました');
-    });
-  };
+    }); // getScalesData(rootNumber);
+  }, [rootNumber]);
 
-  var notes = [scales.i, scales.ii, scales.iii, scales.iv, scales.v, scales.vi, scales.vii]; // scales.map((scale) =>
-  //   notes.push({
-  //     i: scale.i,
-  //     ii: scale.ii,
-  //     iii: scale.iii,
-  //     iv: scale.iv,
-  //     v: scale.v,
-  //     vi: scale.vi,
-  //     vii: scale.vii,
-  //   })
-  // );
-  // const [notes, setNotes] = useState([]);
-  // setNotes(defaultNotes);
-  // then(response => {
-  //   setNotes(response.data); //バックエンドから返ってきたデータでpostsを更新する
-  //   console.log(response.data); //取得データ確認用のconsole.log()
-  // })
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      scales = _useState4[0],
+      setScales = _useState4[1]; // const getScalesData = (rootNumber) => {
+  //     axios
+  //       .get(`/api/major?rootNumber=${rootNumber}`)
+  //       .then(response => {
+  //           setScales(response.data);     //バックエンドから返ってきたデータでpostsを更新する
+  //           console.log(response.data); //取得データ確認用のconsole.log()
+  //       })
+  //       .catch(() => {
+  //           console.log('通信に失敗しました');
+  //       });
+  // }
 
+
+  var notes = [scales.i, scales.ii, scales.iii, scales.iv, scales.v, scales.vi, scales.vii];
+  var chords = [scales.i, scales.ii + "m", scales.iii + "m", scales.iv, scales.v, scales.vi + "m", scales.vii + "dim"];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "container",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -11761,7 +11756,9 @@ function Home() {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__["default"], {
                   color: "secondary",
                   variant: "contained",
-                  href: '/api/major?rootNumber=' + index,
+                  onClick: function onClick() {
+                    return setRootNumber(index);
+                  },
                   className: classes.keyButton,
                   children: item
                 }, index);

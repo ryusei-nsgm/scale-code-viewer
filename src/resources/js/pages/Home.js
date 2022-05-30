@@ -31,31 +31,27 @@ const functionList = ['機能', 'T', '代理SD', '代理T', 'SD', 'D', '代理T,
 // const scales = ['Major', 'Minor'];
 // let defaultNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 // let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-const chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
+// const chords = ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
 
 function Home() {
     //定義したスタイルを利用するための設定
     const classes = useStyles();
 
-    // function getScale(index){
-
-    // }
-
+    const [rootNumber, setRootNumber] = useState(0);
     useEffect(() => {
-      getScalesData();
-    },[])
+      axios
+      .get(`/api/major?rootNumber=${rootNumber}`)
+      .then(response => {
+          setScales(response.data);     //バックエンドから返ってきたデータでpostsを更新する
+          console.log(response.data); //取得データ確認用のconsole.log()
+      })
+      .catch(() => {
+          console.log('通信に失敗しました');
+      });
+      // getScalesData(rootNumber);
+    },[rootNumber])
+
     const [scales, setScales] = useState([]);
-    const getScalesData = () => {
-        axios
-          .get('/api/major?rootNumber=4')
-          .then(response => {
-              setScales(response.data);     //バックエンドから返ってきたデータでpostsを更新する
-              console.log(response.data); //取得データ確認用のconsole.log()
-          })
-          .catch(() => {
-              console.log('通信に失敗しました');
-          });
-    }
       
     let notes = [
       scales.i,
@@ -66,25 +62,16 @@ function Home() {
       scales.vi,
       scales.vii,
     ];
-    // scales.map((scale) =>
-    //   notes.push({
-    //     i: scale.i,
-    //     ii: scale.ii,
-    //     iii: scale.iii,
-    //     iv: scale.iv,
-    //     v: scale.v,
-    //     vi: scale.vi,
-    //     vii: scale.vii,
-    //   })
-    // );
 
-    // const [notes, setNotes] = useState([]);
-    // setNotes(defaultNotes);
-
-    // then(response => {
-    //   setNotes(response.data); //バックエンドから返ってきたデータでpostsを更新する
-    //   console.log(response.data); //取得データ確認用のconsole.log()
-    // })
+    let chords = [
+      scales.i,
+      scales.ii + "m",
+      scales.iii + "m",
+      scales.iv,
+      scales.v,
+      scales.vi + "m",
+      scales.vii + "dim",
+    ];
 
     return (
         <div className="container">
@@ -97,7 +84,7 @@ function Home() {
                             {/* キー選択 */}
                             <div>
                               {keyList.map((item, index) => (
-                                <Button color="secondary" variant="contained" href={'/api/major?rootNumber=' + index} className={classes.keyButton} key={index}>{item}</Button>
+                                <Button color="secondary" variant="contained" onClick={() => setRootNumber(index)} className={classes.keyButton} key={index}>{item}</Button>
                               ))}
                             </div>
                             {/* テーブル部分の定義 */}
